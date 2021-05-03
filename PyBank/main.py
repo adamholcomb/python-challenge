@@ -12,8 +12,6 @@ print("-----------------------------------")
 with open(csvpath) as csvfile:
     budget = csv.reader(csvfile,delimiter = ",")
     header = next(budget)
-    #rowcounter = sum(1 for row in budget)
-    #print(rowcounter)
     print(f"Total Months: {len(list(budget))}")
     
 # Sum profit and loss
@@ -24,7 +22,7 @@ with open(csvpath) as csvfile:
     for row in budget:
         profit = int(row[1])
         profitcounter += profit
-    print(f"${profitcounter}")
+    print(f"Total: ${profitcounter}")
 
 # Average of changes in profit over period
 profit = []
@@ -47,5 +45,19 @@ with open(csvpath) as csvfile:
     average = (changecounter)/(len(changes))
     print(f"Average change: ${round(average,2)}")
 
+# Greatest increase and decrease in revenue (date and amount)
+with open(csvpath) as csvfile:
+    budget = (csv.reader(csvfile,delimiter = ","))
+    header = next(budget)    
+    maxchange = max(changes)
+    minchange = min(changes)
+    dates = []
+    for row in budget:
+        dates.append(row[0])
+    maxdate = dates[1+changes.index(max(changes))]
+    mindate = dates[1+changes.index(min(changes))]
+    
+    print(f"Greatest increase in profits: {maxdate}, ${maxchange}")
+    print(f"Greatest decrease in profits: {mindate}, ${minchange}")
 
-
+# Export text file 
