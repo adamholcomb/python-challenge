@@ -3,16 +3,22 @@
 import os
 import csv
 csvpath = os.path.join("Resources", "budget_data.csv")
+outputpath = os.path.join("Analysis", "pybank_output.txt")
+textfile = open(outputpath,"w")
 
 print("Financial Analysis")
+textfile.write("Financial Analysis\n")
 print("-----------------------------------")
+textfile.write("--------------------------------\n")
 
 
 # Count number of months
 with open(csvpath) as csvfile:
     budget = csv.reader(csvfile,delimiter = ",")
     header = next(budget)
-    print(f"Total Months: {len(list(budget))}")
+    months = len(list(budget))
+    print(f"Total Months: {months}")
+    textfile.write(f"Total Months: {months}\n")
     
 # Sum profit and loss
 with open(csvpath) as csvfile:
@@ -23,6 +29,7 @@ with open(csvpath) as csvfile:
         profit = int(row[1])
         profitcounter += profit
     print(f"Total: ${profitcounter}")
+    textfile.write(f"Total: ${profitcounter}\n")
 
 # Average of changes in profit over period
 profit = []
@@ -44,6 +51,7 @@ with open(csvpath) as csvfile:
         changecounter += row
     average = (changecounter)/(len(changes))
     print(f"Average change: ${round(average,2)}")
+    textfile.write(f"Average change: ${round(average,2)}\n")
 
 # Greatest increase and decrease in revenue (date and amount)
 with open(csvpath) as csvfile:
@@ -58,6 +66,10 @@ with open(csvpath) as csvfile:
     mindate = dates[1+changes.index(min(changes))]
     
     print(f"Greatest increase in profits: {maxdate}, ${maxchange}")
+    textfile.write(f"Greatest increase in profits: {maxdate}, ${maxchange}\n")
     print(f"Greatest decrease in profits: {mindate}, ${minchange}")
+    textfile.write(f"Greatest decrease in profits: {mindate}, ${minchange}\n")
 
-# Export text file 
+textfile.close
+
+# Export text file: added code throughout in addition to print statements
