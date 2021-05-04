@@ -11,7 +11,7 @@ with open(csvpath) as csvfile:
     csv_header = next(polldata)
 
     # Add data to dictionary
-    polldict = {rows[0]:rows[2] for rows in polldata}
+    polldict = {rows[2]:rows[1] for rows in polldata}
 
 # Print Headers
 print("Election Results")
@@ -22,3 +22,6 @@ print(f"Total Votes: {len(polldict)}")
 print("---------------------------")
 
 # List of Vote-Recieving Candidates
+
+for candidate,county in polldict.items():
+    print(candidate)
