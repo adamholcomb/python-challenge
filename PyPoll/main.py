@@ -23,3 +23,12 @@ with open(csvpath) as csvfile:
         print(f"{key}: {round(value/totalvotes*100,2)}%, {value} votes")
     print("---------------------------")
 
+# Add winner
+#winner = (dict((v,k) for k,v in polldict.items()).get(max(polldict.values())))
+    winner_count = 0
+    for key in polldict.keys():
+        if polldict[key] > winner_count:
+            winner = key
+            winner_count = polldict[key]
+    print(f"Winner: {winner}")  
+    print("---------------------------")
