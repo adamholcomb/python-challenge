@@ -12,4 +12,13 @@ with open(csvpath) as csvfile:
 
     # Add data to dictionary
     polldict = {rows[0]:rows[2] for rows in polldata}
-#print(polldict)
+
+# Print Headers
+print("Election Results")
+print("---------------------------")
+
+# Total Votes
+print(f"Total Votes: {len(polldict)}")
+print("---------------------------")
+
+# List of Vote-Recieving Candidates
