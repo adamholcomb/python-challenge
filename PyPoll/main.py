@@ -9,4 +9,7 @@ polldict = {}
 with open(csvpath) as csvfile:
     polldata = csv.reader(csvfile, delimiter=",")
     csv_header = next(polldata)
-    
+
+    # Add data to dictionary
+    polldict = {rows[0]:rows[2] for rows in polldata}
+#print(polldict)
