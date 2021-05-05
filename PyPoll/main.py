@@ -32,3 +32,17 @@ with open(csvpath) as csvfile:
             winner_count = polldict[key]
     print(f"Winner: {winner}")  
     print("---------------------------")
+
+# Write output file
+    outpath = os.path.join("Analysis","pypoll_output.txt")
+    output = open(outpath,"w")
+    output.write("Election Results\n")
+    output.write("---------------------------\n")
+    output.write(f"Total Votes: {totalvotes}\n")
+    output.write("---------------------------\n")
+    for key, value in polldict.items():
+            output.write(f"{key}: {round(value/totalvotes*100,2)}%, {value} votes\n")
+    output.write("---------------------------\n")
+    output.write(f"Winner: {winner}\n")
+    output.write("---------------------------\n")
+    
